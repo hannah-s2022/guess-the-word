@@ -19,7 +19,7 @@ const getWord = async function () {
     const randomIndex = Math.floor(Math.random() * wordArray.length);
     word = wordArray[randomIndex].trim();
     placeholder(word);
-}
+};
 
 getWord();
 
@@ -124,7 +124,6 @@ const checkPlayerWin = function () {
     if (word.toUpperCase() === wordInProgress.innerText) {
         message.classList.add("win");
         message.innerHTML= `<p class="highlight">You guessed correct the word! Congrats!</p>`;
-
         startOver();
     }
 };
@@ -134,15 +133,16 @@ const startOver = function () {
     remainingGuessesElement.classList.add("hide");
     guessedLettersElement.classList.add("hide");
     playAgainButton.classList.remove("hide");
+    wordInProgress.classList.add("hide");
 };
 
 playAgainButton.addEventListener("click", function () {
     message.classList.remove("win");
     guessedLetters = [];
     remainingGuesses = 8;
+    remainingGuessesSpan.innerText = `${remainingGuesses} guesses`;
     guessedLettersElement.innerHTML = "";
-    remainingGuesses.innerText = `${remainingGuesses} guesses`
-    message.innerText = "";
+    message.innerHTML = "";
 
     getWord();
 
@@ -150,6 +150,7 @@ playAgainButton.addEventListener("click", function () {
     remainingGuessesElement.classList.remove("hide");
     guessedLettersElement.classList.remove("hide");
     playAgainButton.classList.add("hide");
+    wordInProgress.classList.remove("hide");
 });
 
 
